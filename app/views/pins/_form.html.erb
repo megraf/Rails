@@ -1,25 +1,26 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
-<%= form_for(@pin) do |f| %>
-  <% if @pin.errors.any? %>
+<div class='panel-body'>
+<%= form_for @pin, html: { multipart: true } do |f| %>
+<% if @pin.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pin.errors.count, "error") %> prohibited this pin from being saved:</h2>
-</div>
+      <h2><%= pluralize(@pin.errors.count, "error") %> prohibited this pin from being saved:</h1>
       <ul>
       <% @pin.errors.full_messages.each do |message| %>
         <li><%= message %></li>
+        </div>
       <% end %>
       </ul>
-    </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class='form-group'>
+    <%= f.label :description %><br />
+    <%= f.text_field :description, autofocus: true, class: 'form-control' %>
+    
+    <%= f.label :image %><br>
+    <%= f.file_field :image, class: 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit 'Update', class: 'btn-btn primary' %>
+  <div class='actions'>
+        <%= f.submit 'Submit', class: 'btn btn-primary' %>
   </div>
+</div>
 <% end %>
 </div>
-</div>
+
